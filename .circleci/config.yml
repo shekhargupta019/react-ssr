@@ -29,14 +29,3 @@ workflows:
   test-workflow:
     jobs:
       - tests
-  schedule-workflow:
-    triggers:
-      - schedule:
-          cron: "0 * * * *"
-          filters:
-            branches:
-              only:
-                - main
-      jobs:
-        - build
-        - tests
