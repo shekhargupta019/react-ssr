@@ -28,7 +28,7 @@ workflows:
       - build
   test-workflow:
     jobs:
-      - test
+      - tests
   schedule-workflow:
     triggers:
       - schedule:
