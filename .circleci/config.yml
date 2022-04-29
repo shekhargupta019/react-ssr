@@ -11,7 +11,7 @@ jobs:
         name: Install dependencies
         command: 
           npm install --save
-      -run:
+      - run:
         name: Run unit tests
         command: npm run test
       - store_test_results:
