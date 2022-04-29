@@ -11,9 +11,6 @@ jobs:
         name: Install dependencies
         command: 
           npm install --save
-      - run:
-        name: Run unit tests
-        command: npm run test
       - store_test_results:
           path: test-results
       - store_artifacts:
