@@ -1,22 +1,22 @@
-# Use the latest 2.1 version of CircleCI pipeline process engine.
-# See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
+orbs:
+  node: circleci/node@4.7
 jobs:
-  run_tests:
+  build-and-test:
     docker:
+      - image: cimg/node:16.10
       - image: cimg/node:16.10.0
     steps:
       - checkout
+      - node/install-packages:
+          pkg-manager: npm
       - run:
-        name: Install dependencies
-        command: 
-          npm install --save
-      - store_test_results:
-          path: test-results
-      - store_artifacts:
-          path: test-results
-workflow:
-  build_test:
+          name: Install dependencies
+          command: npm install
+      - run:
+          name: Run tests
+          command: npm test
+workflows:
+  sample:
     jobs:
-      - run_tests
-
+      - build-and-test
