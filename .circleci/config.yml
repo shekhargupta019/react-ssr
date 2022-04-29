@@ -14,8 +14,6 @@ jobs:
       - setup_remote_docker:
         docker_layer_caching: true
       - run: docker build
-          name: Install dependencies
-          command: npm install
   tests:
     docker:
       - image: cimg/node:16.10.0
@@ -23,7 +21,7 @@ jobs:
       - checkout
       - run:
           name: Run tests
-          command: npm run test
+          command: npm install && npm run test
 workflows:
   commit-workflow:
     jobs:
