@@ -6,7 +6,7 @@ orbs:
   node: circleci/node@4.7
 
 jobs:
-  docker-image:
+  build:
     docker:
       - image: cimg/node:16.10.0
     steps:
@@ -14,12 +14,6 @@ jobs:
       - setup_remote_docker:
         docker_layer_caching: true
       - run: docker build
-  build:
-    docker:
-      - image: cimg/node:16.10.0
-    steps:
-      - checkout
-      - run:
           name: Install dependencies
           command: npm install
   tests:
@@ -33,7 +27,6 @@ jobs:
 workflows:
   commit-workflow:
     jobs:
-      - docker-image
       - build
       - tests:
           requires:
